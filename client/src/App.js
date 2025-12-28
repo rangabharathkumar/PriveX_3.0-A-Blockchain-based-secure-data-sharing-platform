@@ -1,4 +1,4 @@
-import Upload from "./artifacts/contracts/Upload.sol/Upload.json";
+import Upload from "./contracts/Upload.json";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { BrowserRouter, Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
@@ -7,7 +7,7 @@ import Display from "./components/Display";
 import Modal from "./components/Modal";
 import Home from "./components/Home";
 import UserManual from "./components/UserManual";
-import AboutUs from "./components/AboutUs"; 
+import AboutUs from "./components/AboutUs";
 import "./App.css";
 import Dashboard from './components/Dashboard';
 
@@ -37,7 +37,7 @@ function App() {
         const address = await signer.getAddress();
         console.log(address);
         setAccount(address);
-        
+
         // Use the contract address from environment variable
         const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
         const contract = new ethers.Contract(contractAddress, Upload.abi, signer);
@@ -82,9 +82,9 @@ function App() {
           <div className="cube"></div>
           <div className="cube"></div>
         </div>
-        
+
         <Navigation />
-        
+
         <Routes>
           <Route path="/" element={<Home onTryNow={() => setDashboardOpen(true)} />} />
           <Route path="/manual" element={<UserManual />} />
@@ -93,8 +93,8 @@ function App() {
         </Routes>
 
         {dashboardOpen && (
-          <Dashboard 
-            contract={contract} 
+          <Dashboard
+            contract={contract}
             account={account}
             onClose={() => setDashboardOpen(false)}
           />
