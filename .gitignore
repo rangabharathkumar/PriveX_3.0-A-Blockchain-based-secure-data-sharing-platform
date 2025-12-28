@@ -16,4 +16,5 @@ client/.env
 !client/          # Ensure the client folder is included
 !client/src/**    # Add the entire source code folder
 !client/public/** # Add public files
+!client/src/artifacts/** # Include compiled contract artifacts for deployment
 
