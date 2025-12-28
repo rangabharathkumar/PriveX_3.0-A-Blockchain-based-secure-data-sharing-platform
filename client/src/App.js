@@ -1,4 +1,3 @@
-import Upload from "./contracts/Upload.json";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { BrowserRouter, Routes, Route, Navigate, Link, useLocation } from "react-router-dom";
@@ -10,6 +9,17 @@ import UserManual from "./components/UserManual";
 import AboutUs from "./components/AboutUs";
 import "./App.css";
 import Dashboard from './components/Dashboard';
+
+// Contract ABI - will be loaded dynamically
+let contractABI = null;
+
+// Try to import contract artifacts if available (for local development)
+try {
+  const Upload = require("./contracts/Upload.json");
+  contractABI = Upload.abi;
+} catch (error) {
+  console.log("Contract artifacts not found in build, will use from local deployment");
+}
 
 function App() {
   const [account, setAccount] = useState("");
@@ -23,32 +33,45 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
     const loadProvider = async () => {
-      if (provider) {
+      if (!window.ethereum) {
+        console.error("Metamask is not installed");
+        return;
+      }
+
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+
         window.ethereum.on("chainChanged", () => {
           window.location.reload();
         });
         window.ethereum.on("accountsChanged", () => {
           window.location.reload();
         });
+
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
         const address = await signer.getAddress();
-        console.log(address);
+        console.log("Connected account:", address);
         setAccount(address);
+        setProvider(provider);
 
         // Use the contract address from environment variable
         const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-        const contract = new ethers.Contract(contractAddress, Upload.abi, signer);
-        console.log(contract);
-        setContract(contract);
-        setProvider(provider);
-      } else {
-        console.error("Metamask is not installed");
+
+        if (contractAddress && contractABI) {
+          const contract = new ethers.Contract(contractAddress, contractABI, signer);
+          console.log("Contract initialized at:", contractAddress);
+          setContract(contract);
+        } else {
+          console.warn("Contract not initialized. Set REACT_APP_CONTRACT_ADDRESS environment variable and deploy contract locally.");
+        }
+      } catch (error) {
+        console.error("Error loading provider:", error);
       }
     };
-    provider && loadProvider();
+
+    loadProvider();
   }, []);
 
   // Navigation component
