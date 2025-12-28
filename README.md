@@ -2,6 +2,54 @@
 
 A decentralized file sharing platform built with React, Ethereum smart contracts, and IPFS storage. This project demonstrates blockchain-based access control and secure file management.
 
+## 🌐 Live Demo
+
+**Try it now:** [https://privex30.vercel.app/](https://privex30.vercel.app/)
+
+> **Note**: The live demo shows the frontend interface. To use the full blockchain functionality, follow the setup instructions below to run a local blockchain and connect it to the deployed frontend.
+
+---
+
+## 🚀 Quick Start - Try the Demo
+
+### Option 1: View the Interface (No Setup Required)
+Simply visit [https://privex30.vercel.app/](https://privex30.vercel.app/) to see the application interface.
+
+### Option 2: Full Demo with Blockchain (5 Minutes Setup)
+
+1. **Clone this repository**
+   ```bash
+   git clone https://github.com/rangabharathkumar/Blockchain-based-secure-data-sharing-platform-B2B.git
+   cd Blockchain-based-secure-data-sharing-platform-B2B
+   npm install
+   ```
+
+2. **Start local blockchain**
+   ```bash
+   npx hardhat node
+   ```
+   Keep this terminal open!
+
+3. **Deploy smart contract** (new terminal)
+   ```bash
+   npx hardhat run scripts/deploy.js --network localhost
+   ```
+   **Copy the contract address** that appears!
+
+4. **Configure MetaMask**
+   - Install [MetaMask](https://metamask.io/)
+   - Add network:
+     - Network Name: `Hardhat Local`
+     - RPC URL: `http://127.0.0.1:8545`
+     - Chain ID: `31337`
+     - Currency: `ETH`
+   - Import Account: Use private key from Hardhat terminal (Account #0)
+
+5. **Use the app**
+   - Visit [https://privex30.vercel.app/](https://privex30.vercel.app/)
+   - Connect MetaMask (select Hardhat Local network)
+   - Upload files and manage access!
+
 ---
 
 ## 🏗️ Architecture
@@ -177,7 +225,78 @@ git push origin main
 
 ---
 
-## 🎓 For Academic Demos & Presentations
+## � Fork and Deploy Your Own Version
+
+Want to create your own deployment? Here's how:
+
+### 1. Fork the Repository
+
+1. Click the **Fork** button at the top right of this repository
+2. Clone your forked repository:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/Blockchain-based-secure-data-sharing-platform-B2B.git
+   cd Blockchain-based-secure-data-sharing-platform-B2B
+   ```
+
+### 2. Install Dependencies
+
+```bash
+# Install root dependencies
+npm install
+
+# Install client dependencies
+cd client
+npm install
+cd ..
+```
+
+### 3. Deploy to Vercel
+
+1. Push your fork to GitHub (if you made any changes)
+2. Go to [vercel.com](https://vercel.com) and sign in
+3. Click **"Add New"** → **"Project"**
+4. Import your forked repository
+5. **Configure**:
+   - **Root Directory**: `client` ⚠️ **CRITICAL**
+   - **Framework**: Create React App (auto-detected)
+   - **Build Command**: `npm run build` (auto-filled)
+   - **Output Directory**: `build` (auto-filled)
+6. Click **Deploy**
+7. Wait 2-3 minutes - your app will be live!
+
+### 4. Use Your Deployed App
+
+**Option A: With Local Blockchain (Recommended for Development)**
+1. Start Hardhat: `npx hardhat node`
+2. Deploy contract: `npx hardhat run scripts/deploy.js --network localhost`
+3. Configure MetaMask to Hardhat Local (see Quick Start above)
+4. Visit your Vercel URL and connect MetaMask
+
+**Option B: With Sepolia Testnet (For Persistent Demo)**
+1. Get test ETH from [Sepolia Faucet](https://sepoliafaucet.com)
+2. Create `.env` file:
+   ```env
+   SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/YOUR-KEY
+   PRIVATE_KEY=your_metamask_private_key
+   ```
+3. Deploy to Sepolia: `npx hardhat run scripts/deploy.js --network sepolia`
+4. Add environment variable in Vercel:
+   - Go to Project Settings → Environment Variables
+   - Add: `REACT_APP_CONTRACT_ADDRESS` = your contract address
+   - Redeploy
+5. Switch MetaMask to Sepolia network
+6. Visit your Vercel URL and connect!
+
+### 5. Customize Your App
+
+- **Change branding**: Edit `client/src/components/Home.js`
+- **Modify colors**: Update `client/src/App.css`
+- **Add features**: Extend `contracts/Upload.sol`
+- **Update contract**: Run `npx hardhat compile` and redeploy
+
+---
+
+## �🎓 For Academic Demos & Presentations
 
 ### What Your Audience Sees:
 
