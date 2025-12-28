@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Privex 3.0 - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Blockchain-based secure data sharing platform frontend built with React.
 
-## Available Scripts
+## 🚀 Quick Deploy to Vercel
 
-In the project directory, you can run:
+### 1. Import to Vercel
+- Go to [vercel.com](https://vercel.com)
+- Click "Add New" → "Project"
+- Import your GitHub repository
 
-### `npm start`
+### 2. Configure Settings
+- **Root Directory**: `client` ⚠️ **IMPORTANT**
+- **Framework**: Create React App
+- **Build Command**: `npm run build`
+- **Output Directory**: `build`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 3. Deploy
+Click "Deploy" - that's it! Your frontend will be live in 2-3 minutes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🔧 Environment Variables (Optional)
 
-### `npm test`
+Add these in Vercel dashboard when you want to connect blockchain:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+REACT_APP_CONTRACT_ADDRESS=your_contract_address
+REACT_APP_PINATA_API_KEY=your_pinata_key
+REACT_APP_PINATA_SECRET_API_KEY=your_pinata_secret
+REACT_APP_NETWORK_ID=11155111
+REACT_APP_NETWORK_NAME=sepolia
+```
 
-### `npm run build`
+**Note**: The app will work without these - you can add them later!
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 💻 Local Development
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+npm install
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Opens at `http://localhost:3000`
 
-### `npm run eject`
+## 📦 Build for Production
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm run build
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Creates optimized production build in `build/` folder.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🎯 Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- ✅ Secure file upload and sharing
+- ✅ Blockchain-based access control
+- ✅ MetaMask integration
+- ✅ Group management
+- ✅ IPFS storage integration
+- ✅ Responsive design
 
-## Learn More
+## 🔗 Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- React 18
+- Ethers.js
+- React Router
+- React Dropzone
+- Web3 / MetaMask
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**For full deployment guide, see [VERCEL_DEPLOY.md](../VERCEL_DEPLOY.md) in the root directory.**
